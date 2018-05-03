@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	//"net/http"
+	"net/http"
 	"os"
 	"path/filepath"
 	//"runtime/pprof"
@@ -112,8 +112,6 @@ func main() {
 		curriculum_map[record["Item"]] = record["Text"]
 	}
 
-	e := echo.New()
-
 	// TODO: memoise for efficiency?
 	start := time.Now()
 	classes, classifier := train_curriculum(curriculum, "Science", []string{"7", "8"})
@@ -126,6 +124,29 @@ func main() {
 	response := classify_text(classifier, classes, curriculum_map, input)
 
 	fmt.Printf("%+v\n", response)
+
+	e := echo.New()
+	e.GET("/align", func(c echo.Context) error {
+		year := c.QueryParam("year")
+		learning_area := c.QueryParam("area")
+		text := c.QueryParam("text")
+		if learning_area == "" {
+			err = fmt.Errorf("area parameter not supplied")
+			c.String(http.StatusBadRequest, err.Error())
+			return err
+		}
+		if text == "" {
+			err = fmt.Errorf("text parameter not supplied")
+			c.String(http.StatusBadRequest, err.Error())
+			return err
+		}
+		if year == "" {
+			year = "K,P,1,2,3,4,5,6,7,8,9,10,11,12"
+		}
+		classes, classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
+		response := classify_text(classifier, classes, curriculum_map, text)
+		return c.JSON(http.StatusOK, response)
+	})
 	e.Logger.Fatal(e.Start(":1576"))
 
 }

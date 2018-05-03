@@ -9,7 +9,7 @@ and outputting the alignments as a web service.
 The web service runs on port 1576, and takes the following arguments:
 
 ````
-GET http://localhost:1576/curriculum?yr=X,Y,Z&area=W&text=....
+GET http://localhost:1576/align?yr=X,Y,Z&area=W&text=....
 ````
 where _yr_ is the year level (and can be comma-delimited), _area_ is the learning area, and _text_ is the text to be aligned. The _area_ and _text_ parameters are obligatory.
 
