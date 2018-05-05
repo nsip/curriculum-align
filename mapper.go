@@ -9,7 +9,6 @@ import (
 	//"runtime/pprof"
 	"sort"
 	"strings"
-	"time"
 
 	"github.com/jbrukh/bayesian"
 	"github.com/jdkato/prose/tokenize"
@@ -18,6 +17,11 @@ import (
 	"github.com/recursionpharma/go-csv-map"
 	"gopkg.in/fatih/set.v0"
 )
+
+type ClassifierType struct {
+	Classifier *bayesian.Classifier
+	Classes    []bayesian.Class
+}
 
 // assumes tab-delimited file with header.
 // Expects to find fields Item (identifier), Year, LearningArea, Text, and optionally Elaborations
@@ -53,8 +57,15 @@ func read_curriculum(directory string) ([]map[string]string, error) {
 	return records, nil
 }
 
+var classifiers map[string]ClassifierType
+
 // create a classifier specific to components of the curriculum
-func train_curriculum(curriculum []map[string]string, learning_area string, years []string) ([]bayesian.Class, *bayesian.Classifier) {
+func train_curriculum(curriculum []map[string]string, learning_area string, years []string) ClassifierType {
+	sort.Slice(years, func(i, j int) bool { return years[i] > years[j] })
+	key := learning_area + "_" + strings.Join(years, ",")
+	if classifier, ok := classifiers[key]; ok {
+		return classifier
+	}
 	classes := make([]bayesian.Class, 0)
 	class_set := set.New()
 	for _, record := range curriculum {
@@ -80,7 +91,9 @@ func train_curriculum(curriculum []map[string]string, learning_area string, year
 		classifier.Learn(tokenize.TextToWords(train), bayesian.Class(record["Item"]))
 	}
 	classifier.ConvertTermsFreqToTfIdf()
-	return classes, classifier
+	ret := ClassifierType{Classifier: classifier, Classes: classes}
+	classifiers[key] = ret // memoise
+	return ret
 }
 
 type AlignmentType struct {
@@ -89,13 +102,13 @@ type AlignmentType struct {
 	Score float64
 }
 
-func classify_text(classifier *bayesian.Classifier, classes []bayesian.Class, curriculum_map map[string]string, input string) []AlignmentType {
-	scores1, _, _ := classifier.LogScores(tokenize.TextToWords(input))
+func classify_text(classif ClassifierType, curriculum_map map[string]string, input string) []AlignmentType {
+	scores1, _, _ := classif.Classifier.LogScores(tokenize.TextToWords(input))
 	response := make([]AlignmentType, 0)
 	for i := 0; i < len(scores1); i++ {
 		response = append(response, AlignmentType{
-			Item:  string(classes[i]),
-			Text:  curriculum_map[string(classes[i])],
+			Item:  string(classif.Classes[i]),
+			Text:  curriculum_map[string(classif.Classes[i])],
 			Score: scores1[i]})
 	}
 	sort.Slice(response, func(i, j int) bool { return response[i].Score > response[j].Score })
@@ -103,6 +116,7 @@ func classify_text(classifier *bayesian.Classifier, classes []bayesian.Class, cu
 }
 
 func main() {
+	classifiers = make(map[string]ClassifierType)
 	curriculum, err := read_curriculum("./curricula/")
 	if err != nil {
 		log.Fatalln(err)
@@ -112,24 +126,21 @@ func main() {
 		curriculum_map[record["Item"]] = record["Text"]
 	}
 
-	// TODO: memoise for efficiency?
-	start := time.Now()
-	classes, classifier := train_curriculum(curriculum, "Science", []string{"7", "8"})
-	t := time.Now()
-	log.Printf("Train curricula: %+v\n", t.Sub(start))
-	start = t
-
+	classif := train_curriculum(curriculum, "Science", []string{"7", "8"})
 	input := "I am very interested in biotechnology"
-
-	response := classify_text(classifier, classes, curriculum_map, input)
+	response := classify_text(classif, curriculum_map, input)
 
 	fmt.Printf("%+v\n", response)
 
 	e := echo.New()
 	e.GET("/align", func(c echo.Context) error {
-		year := c.QueryParam("year")
-		learning_area := c.QueryParam("area")
-		text := c.QueryParam("text")
+		//values := c.QueryParams()
+		var year, learning_area, text string
+		//var ok bool
+		learning_area = c.QueryParam("area")
+		text = c.QueryParam("text")
+		year = c.QueryParam("year")
+		log.Printf("Area: %s\nYears: %s\nText: %s\n", learning_area, year, text)
 		if learning_area == "" {
 			err = fmt.Errorf("area parameter not supplied")
 			c.String(http.StatusBadRequest, err.Error())
@@ -143,8 +154,9 @@ func main() {
 		if year == "" {
 			year = "K,P,1,2,3,4,5,6,7,8,9,10,11,12"
 		}
-		classes, classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
-		response := classify_text(classifier, classes, curriculum_map, text)
+		// log.Printf("Area: %s\nYears: %s\nText: %s\n", learning_area, year, text)
+		classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
+		response := classify_text(classifier, curriculum_map, text)
 		return c.JSON(http.StatusOK, response)
 	})
 	e.Logger.Fatal(e.Start(":1576"))

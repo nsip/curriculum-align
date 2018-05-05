@@ -11,13 +11,17 @@ The web service runs on port 1576, and takes the following arguments:
 ````
 GET http://localhost:1576/align?yr=X,Y,Z&area=W&text=....
 ````
-where _yr_ is the year level (and can be comma-delimited), _area_ is the learning area, and _text_ is the text to be aligned. The _area_ and _text_ parameters are obligatory.
+where _yr_ is the year level (and can be comma-delimited), _area_ is the learning area, and _text_ is the text to be aligned. The _area_ and _text_ parameters are obligatory. For example:
+
+````
+http://localhost:1576/align?area=Science&year=6,7,8&text=Biotechnology
+````
 
 The response is a JSON list of structs with the following fields:
 
-* item: the identifier of the curriculum item whose alignment is reported
-* text: the text of the curriculum item whose alignment is reported
-* score: the score of the alignment
+* Item: the identifier of the curriculum item whose alignment is reported
+* Text: the text of the curriculum item whose alignment is reported
+* Score: the score of the alignment
 
 
 ## 1576
