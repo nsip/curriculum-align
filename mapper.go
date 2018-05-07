@@ -115,50 +115,57 @@ func classify_text(classif ClassifierType, curriculum_map map[string]string, inp
 	return response
 }
 
-func main() {
+var curriculum []map[string]string
+var curriculum_map map[string]string
+
+func Init() {
+	var err error
 	classifiers = make(map[string]ClassifierType)
-	curriculum, err := read_curriculum("./curricula/")
+	curriculum, err = read_curriculum("./curricula/")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	curriculum_map := make(map[string]string)
+	curriculum_map = make(map[string]string)
 	for _, record := range curriculum {
 		curriculum_map[record["Item"]] = record["Text"]
 	}
+}
 
-	classif := train_curriculum(curriculum, "Science", []string{"7", "8"})
-	input := "I am very interested in biotechnology"
-	response := classify_text(classif, curriculum_map, input)
+func Align(c echo.Context) error {
+	var year, learning_area, text string
+	learning_area = c.QueryParam("area")
+	text = c.QueryParam("text")
+	year = c.QueryParam("year")
+	log.Printf("Area: %s\nYears: %s\nText: %s\n", learning_area, year, text)
+	if learning_area == "" {
+		err := fmt.Errorf("area parameter not supplied")
+		c.String(http.StatusBadRequest, err.Error())
+		return err
+	}
+	if text == "" {
+		err := fmt.Errorf("text parameter not supplied")
+		c.String(http.StatusBadRequest, err.Error())
+		return err
+	}
+	if year == "" {
+		year = "K,P,1,2,3,4,5,6,7,8,9,10,11,12"
+	}
+	classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
+	response := classify_text(classifier, curriculum_map, text)
+	return c.JSON(http.StatusOK, response)
+}
 
-	fmt.Printf("%+v\n", response)
+func main() {
+	/*
+		classif := train_curriculum(curriculum, "Science", []string{"7", "8"})
+		input := "I am very interested in biotechnology"
+		response := classify_text(classif, curriculum_map, input)
+		fmt.Printf("%+v\n", response)
+	*/
 
+	Init()
 	e := echo.New()
-	e.GET("/align", func(c echo.Context) error {
-		//values := c.QueryParams()
-		var year, learning_area, text string
-		//var ok bool
-		learning_area = c.QueryParam("area")
-		text = c.QueryParam("text")
-		year = c.QueryParam("year")
-		log.Printf("Area: %s\nYears: %s\nText: %s\n", learning_area, year, text)
-		if learning_area == "" {
-			err = fmt.Errorf("area parameter not supplied")
-			c.String(http.StatusBadRequest, err.Error())
-			return err
-		}
-		if text == "" {
-			err = fmt.Errorf("text parameter not supplied")
-			c.String(http.StatusBadRequest, err.Error())
-			return err
-		}
-		if year == "" {
-			year = "K,P,1,2,3,4,5,6,7,8,9,10,11,12"
-		}
-		// log.Printf("Area: %s\nYears: %s\nText: %s\n", learning_area, year, text)
-		classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
-		response := classify_text(classifier, curriculum_map, text)
-		return c.JSON(http.StatusOK, response)
-	})
+	e.GET("/align", Align)
 	e.Logger.Fatal(e.Start(":1576"))
 
 }
