@@ -1,6 +1,8 @@
 # curriculum-align
 Web service to align free text to curriculum standards as document classification
 
+NOTE: This is experimental and proof-of-concept code
+
 This code builds on https://github.com/nsip/curriculum-mapper, putting in place a 
 document classifier (https://en.wikipedia.org/wiki/Tf–idf) to classify arbitrary
 text as aligning to the curriculum items the code is provisioned with,
