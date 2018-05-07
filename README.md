@@ -23,12 +23,12 @@ The response is a JSON list of structs with the following fields:
 * Text: the text of the curriculum item whose alignment is reported
 * Score: the score of the alignment
 
-To use embedded in other labstack.echo webservers, replicate the main() code:
+To use embedded in other labstack.echo webservers, replicate the cmd/main.go main() code:
 
 ````
 align.Init()
 e := echo.New()
-e.GET("/align", alignAlign)
+e.GET("/align", align.Align)
 ````
 
 
