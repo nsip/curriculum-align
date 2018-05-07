@@ -1,4 +1,4 @@
-package main
+package align
 
 import (
 	"fmt"
@@ -153,19 +153,4 @@ func Align(c echo.Context) error {
 	classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
 	response := classify_text(classifier, curriculum_map, text)
 	return c.JSON(http.StatusOK, response)
-}
-
-func main() {
-	/*
-		classif := train_curriculum(curriculum, "Science", []string{"7", "8"})
-		input := "I am very interested in biotechnology"
-		response := classify_text(classif, curriculum_map, input)
-		fmt.Printf("%+v\n", response)
-	*/
-
-	Init()
-	e := echo.New()
-	e.GET("/align", Align)
-	e.Logger.Fatal(e.Start(":1576"))
-
 }
