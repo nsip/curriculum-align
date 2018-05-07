@@ -60,11 +60,11 @@ func read_curriculum(directory string) ([]map[string]string, error) {
 var classifiers map[string]ClassifierType
 
 // create a classifier specific to components of the curriculum
-func train_curriculum(curriculum []map[string]string, learning_area string, years []string) ClassifierType {
+func train_curriculum(curriculum []map[string]string, learning_area string, years []string) (ClassifierType, error) {
 	sort.Slice(years, func(i, j int) bool { return years[i] > years[j] })
 	key := learning_area + "_" + strings.Join(years, ",")
 	if classifier, ok := classifiers[key]; ok {
-		return classifier
+		return classifier, nil
 	}
 	classes := make([]bayesian.Class, 0)
 	class_set := set.New()
@@ -78,6 +78,9 @@ func train_curriculum(curriculum []map[string]string, learning_area string, year
 		}
 		classes = append(classes, bayesian.Class(record["Item"]))
 		class_set.Add(record["Item"])
+	}
+	if len(classes) < 2 {
+		return ClassifierType{}, fmt.Errorf("Not enough matching curriculum statements for classification")
 	}
 	classifier := bayesian.NewClassifierTfIdf(classes...)
 	for _, record := range curriculum {
@@ -93,7 +96,7 @@ func train_curriculum(curriculum []map[string]string, learning_area string, year
 	classifier.ConvertTermsFreqToTfIdf()
 	ret := ClassifierType{Classifier: classifier, Classes: classes}
 	classifiers[key] = ret // memoise
-	return ret
+	return ret, nil
 }
 
 type AlignmentType struct {
@@ -150,7 +153,11 @@ func Align(c echo.Context) error {
 	if year == "" {
 		year = "K,P,1,2,3,4,5,6,7,8,9,10,11,12"
 	}
-	classifier := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
+	classifier, err := train_curriculum(curriculum, learning_area, strings.Split(year, ","))
+	if err != nil {
+		c.String(http.StatusBadRequest, err.Error())
+		return err
+	}
 	response := classify_text(classifier, curriculum_map, text)
 	return c.JSON(http.StatusOK, response)
 }
