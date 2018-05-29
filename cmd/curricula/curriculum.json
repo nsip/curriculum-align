@@ -1,0 +1,409 @@
+[
+  {
+    "Item": "ACSSU111",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Biological Sciences",
+    "Text": "Classification helps organise the diverse group of organisms",
+    "Elaboration": "_ considering the reasons for classifying such as identification and communication; grouping a variety of organisms on the basis of similarities and differences in particular features; considering how biological classifications have changed over time; classifying using hierarchical systems such as kingdom, phylum, class, order, family, genus, species; using scientific conventions for naming species; using provided keys to identify organisms surveyed in a local habitat"
+  },
+  {
+    "Item": "ACSSU112",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Biological Sciences",
+    "Text": "Interactions between organisms, including the effects of human activities can be represented by food chains and food webs",
+    "Elaboration": "_ using food chains to show feeding relationships in a habitat; constructing and interpreting food webs to show relationships between organisms in an environment; classifying organisms of an environment according to their position in a food chain; recognising the role of microorganisms within food chains and food webs; investigating the effect of human activity on local habitats, such as deforestation, agriculture or the introduction of new species; exploring how living things can cause changes to their environment and impact other living things, such as the effect of cane toads; researching specific examples of human activity, such as the use of fire by traditional Aboriginal people and the effects of palm oil production in Sumatra and Borneo"
+  },
+  {
+    "Item": "ACSSU113",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Chemical Sciences",
+    "Text": "Mixtures, including solutions, contain a combination of pure substances that can be separated using a range of techniques ",
+    "Elaboration": "_ recognising the differences between pure substances and mixtures and identifying examples of each; identifying the solvent and solute in solutions; investigating and using a range of physical separation techniques such as filtration, decantation, evaporation, crystallisation, chromatography and distillation; exploring and comparing separation methods used in the home"
+  },
+  {
+    "Item": "ACSSU115",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Earth and Space Sciences",
+    "Text": "Predictable phenomena on Earth, including seasons and eclipses, are caused by the relative positions of the sun, Earth and the moon",
+    "Elaboration": "_ investigating natural phenomena such as lunar and solar eclipses, seasons and phases of the moon; comparing times for the rotation of Earth, the sun and moon, and comparing the times for the orbits of Earth and the moon; modelling the relative movements of the Earth, sun and moon and how natural phenomena such as solar and lunar eclipses and phases of the moon occur; explaining why different regions of the Earth experience different seasonal conditions"
+  },
+  {
+    "Item": "ACSSU116",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Earth and Space Sciences",
+    "Text": "Some of Earth\u2019s resources are renewable, including water that cycles through the environment, but others are non-renewable",
+    "Elaboration": "_ considering what is meant by the term \u2018renewable\u2019 in relation to the Earth\u2019s resources; considering timescales for regeneration of resources; comparing renewable and non-renewable energy sources, including how they are used in a range of situations; considering the water cycle in terms of changes of state of water; investigating factors that influence the water cycle in nature; exploring how human management of water impacts on the water cycle"
+  },
+  {
+    "Item": "ACSSU117",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Physical Sciences",
+    "Text": "Change to an object\u2019s motion is caused by unbalanced forces, including Earth\u2019s gravitational attraction, acting on the object",
+    "Elaboration": "_ investigating the effects of applying different forces to familiar objects; investigating common situations where forces are balanced, such as stationary objects, and unbalanced, such as falling objects; investigating a simple machine such as lever or pulley system; exploring how gravity affects objects on the surface of Earth; considering how gravity keeps planets in orbit around the sun"
+  },
+  {
+    "Item": "ACSHE119",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Nature and development of science",
+    "Text": "Scientific knowledge has changed peoples\u2019 understanding of the world and is refined as new evidence becomes available",
+    "Elaboration": "_ investigating how advances in telescopes and space probes have provided new evidence about space; researching different ideas used in the development of models of the solar system developed by scientists such as Copernicus, Khayy\u00e1m and Galileo; researching developments in the understanding of astronomy, such as the predictions of eclipses and the calculation of the length of the solar year by Al\u2011Battani in the tenth century"
+  },
+  {
+    "Item": "ACSHE223",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Nature and development of science",
+    "Text": "Science knowledge can develop through collaboration across the disciplines of science and the contributions of people from a range of cultures",
+    "Elaboration": "_ considering how water use and management relies on knowledge from different areas of science, and involves the application of technology; identifying the contributions of Australian scientists to the study of human impact on environments and to local environmental management projects; investigating how land management practices of Aboriginal and Torres Strait Islander peoples can help inform sustainable management of the environment; studying transnational collaborative research in the Antarctic; recognising that traditional and Western scientific knowledge can be used in combination to care for Country/Place"
+  },
+  {
+    "Item": "ACSHE120",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Use and influence of science",
+    "Text": "Solutions to contemporary issues that are found using science and technology, may impact on other areas of society and may involve ethical considerations",
+    "Elaboration": "_ relating regulations about wearing seatbelts or safety helmets to knowledge of forces and motion; considering issues relating to the use and management of water within a community; considering decisions made in relation to the recycling of greywater and blackwater; considering how human activity in the community can have positive and negative effects on the sustainability of ecosystems; investigating ways to control the spread of the cane toad"
+  },
+  {
+    "Item": "ACSHE121",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Use and influence of science",
+    "Text": "People use science understanding and skills in their occupations and these have influenced the development of practices in areas of human activity",
+    "Elaboration": "_ investigating everyday applications of physical separation techniques such as filtering, sorting waste materials, reducing pollution, extracting products from plants, separating blood products and cleaning up oil spills; investigating how advances in science and technology have been applied to the treatment of water in industrial and household systems; investigating how Aboriginal and Torres Strait Islander knowledge is being used to inform scientific decisions, for example care of waterways; researching the different scientific responses to the rabbit plagues in Australian agricultural areas; recognising that water management plays a role in areas such as farming, land management and gardening; investigating how separation techniques are used in the food and wine industries; considering how seasonal changes affect people in a variety of activities such as farming; considering how sports scientists apply knowledge of forces to improve performance"
+  },
+  {
+    "Item": "ACSIS124",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Questioning and predicting",
+    "Text": "Identify questions and problems that can be investigated scientifically and make predictions based on scientific knowledge",
+    "Elaboration": "_ working collaboratively to identify a problem to investigate; recognising that the solution of some questions and problems requires consideration of social, cultural, economic or moral aspects rather than or as well as scientific investigation; using information and knowledge from previous investigations to predict the expected results from an investigation"
+  },
+  {
+    "Item": "ACSIS125",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Planning and conducting",
+    "Text": "Collaboratively and individually plan and conduct a range of investigation types, including fieldwork and experiments, ensuring safety and ethical guidelines are followed ",
+    "Elaboration": "_ working collaboratively to decide how to approach an investigation; learning and applying specific skills and rules relating to the safe use of scientific equipment; identifying whether the use of their own observations and experiments or the use of other research materials is appropriate for their investigation; developing strategies and techniques for effective research using secondary sources, including use of the internet"
+  },
+  {
+    "Item": "ACSIS126",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Planning and conducting",
+    "Text": "Measure and control variables, select equipment appropriate to the task and collect data with accuracy",
+    "Elaboration": "_ recognising the differences between controlled, dependent and independent variables; using a digital camera to record observations and compare images using information technologies; using specialised equipment to increase the accuracy of measurement within an investigation"
+  },
+  {
+    "Item": "ACSIS129",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Processing and analysing data and information",
+    "Text": "Construct and use a range of representations, including graphs, keys and models to represent and analyse patterns or relationships in data using digital technologies as appropriate ",
+    "Elaboration": "_ understanding different types of graphical and physical representation and considering their advantages and disadvantages; using spreadsheets to aid the presentation and simple analysis of data; describing the trends shown in collected data"
+  },
+  {
+    "Item": "ACSIS130",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Processing and analysing data and information",
+    "Text": "Summarise data, from students\u2019 own investigations and secondary sources, and use scientific understanding to identify relationships and draw conclusions based on evidence",
+    "Elaboration": "_ using diagrammatic representations to convey abstract ideas and to simplify complex situations; comparing and contrasting data from a number of sources in order to create a summary of collected data; identifying data which provides evidence to support or negate the hypothesis under investigation; referring to relevant evidence when presenting conclusions drawn from an investigation"
+  },
+  {
+    "Item": "ACSIS131",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Evaluating",
+    "Text": "Reflect on scientific investigations including evaluating the quality of the data collected, and identifying improvements",
+    "Elaboration": "_ discussing investigation methods with others to share ideas about the quality of the inquiry process; identifying and considering indicators of the quality of the data when analysing results; suggesting improvements to inquiry methods based on experience"
+  },
+  {
+    "Item": "ACSIS132",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Evaluating",
+    "Text": "Use scientific knowledge and findings from investigations to evaluate claims based on evidence",
+    "Elaboration": "_ using the evidence provided by scientific investigations to evaluate the claims or conclusions of their peers"
+  },
+  {
+    "Item": "ACSIS133",
+    "Year": [
+      "7"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Communicating",
+    "Text": "Communicate ideas, findings and evidence based solutions to problems using scientific language, and representations, using digital technologies as appropriate",
+    "Elaboration": "_ presenting the outcomes of research using effective forms of representation of data or ideas and scientific language that is appropriate for the target audience; using digital technologies to access information and to communicate and collaborate with others on and off site"
+  },
+  {
+    "Item": "ACSSU149",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Biological Sciences",
+    "Text": "Cells are the basic units of living things; they have specialised structures and functions",
+    "Elaboration": "_ examining a variety of cells using a light microscope, by digital technology or by viewing a simulation; distinguishing plant cells from animal or fungal cells; identifying structures within cells and describing their function; recognising that some organisms consist of a single cell; recognising that cells reproduce via cell division; describing mitosis as cell division for growth and repair"
+  },
+  {
+    "Item": "ACSSU150",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Biological Sciences",
+    "Text": "Multi-cellular organisms contain systems of organs carrying out specialised functions that enable them to survive and reproduce ",
+    "Elaboration": "_ identifying the organs and overall function of a system of a multicellular organism in supporting the life processes; describing the structure of each organ in a system and relating its function to the overall function of the system; examining the specialised cells and tissues involved in structure and function of particular organs; comparing similar systems in different organisms such as digestive systems in herbivores and carnivores, respiratory systems in fish and mammals; distinguishing between asexual and sexual reproduction; comparing reproductive systems of organisms"
+  },
+  {
+    "Item": "ACSSU151",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Chemical Sciences",
+    "Text": "Properties of the different states of matter can be explained in terms of the motion and arrangement of particles ",
+    "Elaboration": "_ explaining why a model for the structure of matter is needed; modelling the arrangement of particles in solids, liquids and gases; using the particle model to explain observed phenomena linking the energy of particles to temperature changes"
+  },
+  {
+    "Item": "ACSSU152",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Chemical Sciences",
+    "Text": "Differences between elements, compounds and mixtures can be described at a particle level ",
+    "Elaboration": "_ modelling the arrangement of particles in elements and compounds; recognising that elements and simple compounds can be represented by symbols and formulas; locating elements on the periodic table"
+  },
+  {
+    "Item": "ACSSU225",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Chemical Sciences",
+    "Text": "Chemical change involves substances reacting to form new substances",
+    "Elaboration": "_ identifying the differences between chemical and physical changes; identifying evidence that a chemical change has taken place; investigating simple reactions such as combining elements to make a compound; recognising that the chemical properties of a substance, for example its flammability and ability to corrode, will affect its use"
+  },
+  {
+    "Item": "ACSSU153",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Earth and Space Sciences",
+    "Text": "Sedimentary, igneous and metamorphic rocks contain minerals and are formed by processes that occur within Earth over a variety of timescales",
+    "Elaboration": "_ representing the stages in the formation of igneous, metamorphic and sedimentary rocks, including indications of timescales involved; identifying a range of common rock types using a key based on observable physical and chemical properties; recognising that rocks are a collection of different minerals; considering the role of forces and energy in the formation of different types of rocks and minerals; recognising that some rocks and minerals, such as ores, provide valuable resources"
+  },
+  {
+    "Item": "ACSSU155",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Understanding",
+    "Substrand": "Physical Sciences",
+    "Text": "Energy appears in different forms, including movement (kinetic energy), heat and potential energy, and energy transformations and transfers cause change within systems",
+    "Elaboration": "_ recognising that kinetic energy is the energy possessed by moving bodies; recognising that potential energy is stored energy, such as gravitational, chemical and elastic energy; investigating different forms of energy in terms of the effects they cause, such as gravitational potential causing objects to fall and heat energy transferred between materials that have a different temperature; recognising that heat energy is often produced as a by-product of energy transfer, such as brakes on a car and light globes; using flow diagrams to illustrate changes between different forms of energy"
+  },
+  {
+    "Item": "ACSHE134",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Nature and development of science",
+    "Text": "Scientific knowledge has changed peoples\u2019 understanding of the world and is refined as new evidence becomes available ",
+    "Elaboration": "_ investigating developments in the understanding of cells and how this knowledge has impacted on areas such as health and medicine; discovering how people\u2019s understanding of the nature of matter has changed over time as evidence for particle theory has become available through developments in technology; considering how the idea of elements has developed over time as knowledge of the nature of matter has improved; investigating the development of the microscope and the impact it has had on the understanding of cell functions and division "
+  },
+  {
+    "Item": "ACSHE226",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Nature and development of science",
+    "Text": "Science knowledge can develop through collaboration across the disciplines of science and the contributions of people from a range of cultures",
+    "Elaboration": "_ investigating how knowledge of the location and extraction of mineral resources relies on expertise from across the disciplines of science; considering how advances in technology, combined with scientific understanding of the functioning of body systems, has enabled medical science to replace or repair organs; researching the use of reproductive technologies and how developments in this field rely on scientific knowledge from different areas of science"
+  },
+  {
+    "Item": "ACSHE135",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Use and influence of science",
+    "Text": "Solutions to contemporary issues that are found using science and technology, may impact on other areas of society and may involve ethical considerations",
+    "Elaboration": "_ investigating requirements and the design of systems for collecting and recycling household waste; investigating strategies implemented to maintain part of the local environment, such as bushland, a beach, a lake, a desert or a shoreline; investigating how energy efficiency can reduce energy consumption; investigating the development of vehicles over time, including the application of science to contemporary designs of solar-powered vehicles; discussing ethical issues that arise from organ transplantation"
+  },
+  {
+    "Item": "ACSHE136",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science as a Human Endeavour",
+    "Substrand": "Use and influence of science",
+    "Text": "People use science understanding and skills in their occupations and these have influenced the development of practices in areas of human activity",
+    "Elaboration": "_ describing how technologies have been applied to modern farming techniques to improve yields and sustainability; investigating how Aboriginal people recognise relationships in ecosystems by burning to promote new growth, attract animals and afford easier hunting and food gathering; describing the impact of plant cloning techniques (asexual production) in agriculture such as horticulture, fruit production and vineyards; investigating the role of science in the development of technology important to the economies and communities of the Asia\u2013Pacific regions, for example car manufacture, earthquake prediction and electronic optics; recognising the role of knowledge of the environment and ecosystems in a number of occupations; considering how engineers improve energy efficiency of a range of processes; recognising the role of knowledge of cells and cell divisions in the area of disease treatment and control; investigating how scientists have created new materials such as synthetic fibres, heat-resistant plastics and pharmaceuticals"
+  },
+  {
+    "Item": "ACSIS139",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Questioning and predicting",
+    "Text": "Identify questions and problems that can be investigated scientifically and make predictions based on scientific knowledge",
+    "Elaboration": "_ considering whether investigation using available resources is possible when identifying questions or problems to investigate; recognising that the solution of some questions and problems requires consideration of social, cultural, economic or moral aspects rather than or as well as scientific investigation; using information and knowledge from their own investigations and secondary sources to predict the expected results from an investigation"
+  },
+  {
+    "Item": "ACSIS140",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Planning and conducting",
+    "Text": "Collaboratively and individually plan and conduct a range of investigation types, including fieldwork and experiments, ensuring safety and ethical guidelines are followed",
+    "Elaboration": "_ working collaboratively to decide how to best approach an investigation; identifying any ethical considerations that may apply to the investigation; taking into consideration all aspects of fair testing, available equipment and safe investigation when planning investigations"
+  },
+  {
+    "Item": "ACSIS141",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Planning and conducting",
+    "Text": "Measure and control variables, select equipment appropriate to the task and collect data with accuracy",
+    "Elaboration": "_ using specialised equipment to increase the accuracy of measurement within an investigation; identifying and explaining the differences between controlled, dependent and independent variables"
+  },
+  {
+    "Item": "ACSIS144",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Processing and analysing data and information ",
+    "Text": "Construct and use a range of representations, including graphs, keys and models to represent and analyse patterns or relationships in data using digital technologies as appropriate",
+    "Elaboration": "_ describing measures of central tendency and identifying outliers for quantitative data; explaining the strengths and limitations of representations such as physical models, diagrams and simulations in terms of the attributes of systems included or not included"
+  },
+  {
+    "Item": "ACSIS145",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Processing and analysing data and information ",
+    "Text": "Summarise data, from students\u2019 own investigations and secondary sources, and use scientific understanding to identify relationships and draw conclusions based on evidence",
+    "Elaboration": "_ constructing tables, graphs, keys and models to represent relationships and trends in collected data; drawing conclusions based on a range of evidence including primary and secondary sources"
+  },
+  {
+    "Item": "ACSIS146",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Evaluating ",
+    "Text": "Reflect on scientific investigations including evaluating the quality of the data collected, and identifying improvements",
+    "Elaboration": "_ suggesting improvements to investigation methods that would improve the accuracy of the data recorded; discussing investigation methods with others to share ideas about the quality of the inquiry process"
+  },
+  {
+    "Item": "ACSIS234",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Evaluating ",
+    "Text": "Use scientific knowledge and findings from investigations to evaluate claims based on evidence",
+    "Elaboration": "_ identifying the scientific evidence available to evaluate claims; deciding whether or not to accept claims based on scientific evidence; identifying where science has been used to make claims relating to products and practices"
+  },
+  {
+    "Item": "ACSIS148",
+    "Year": [
+      "8"
+    ],
+    "LearningArea": "Science",
+    "Strand": "Science Inquiry Skills",
+    "Substrand": "Communicating",
+    "Text": "Communicate ideas, findings and evidence based solutions to problems using scientific language, and representations, using digital technologies as appropriate",
+    "Elaboration": "_ using digital technologies to construct a range of text types to present science ideas; selecting and using appropriate language and representations to communcate science ideas within a specified text type and for a specified audience"
+  }
+]

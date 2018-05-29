@@ -1,10 +1,11 @@
 package align
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -13,7 +14,7 @@ import (
 	"github.com/jdkato/prose/tokenize"
 	"github.com/juliangruber/go-intersect"
 	"github.com/labstack/echo"
-	"github.com/recursionpharma/go-csv-map"
+	//"github.com/recursionpharma/go-csv-map"
 	"gopkg.in/fatih/set.v0"
 )
 
@@ -25,32 +26,55 @@ type ClassifierType struct {
 // assumes tab-delimited file with header.
 // Expects to find fields Item (identifier), Year, LearningArea, Text, and optionally Elaborations
 // Year can contain multiple values; it is ";"-delimited
-func read_curriculum(directory string) ([]map[string]string, error) {
-	files, _ := filepath.Glob(directory + "/*.txt")
+
+type Curriculum struct {
+	Item         string
+	Year         []string
+	LearningArea string
+	Strand       string
+	Substrand    string
+	Text         string
+	Elaboration  string
+	AC_Content   string `json:"AC content"`
+}
+
+// NO, is now json object
+func read_curriculum(directory string) ([]Curriculum, error) {
+	files, _ := filepath.Glob(directory + "/*.json")
 	if len(files) == 0 {
-		log.Fatalln("No *.txt curriculum files found in input folder" + directory)
+		log.Fatalln("No *.json curriculum files found in input folder" + directory)
 	}
-	records := make([]map[string]string, 0)
+	records := make([]Curriculum, 0)
 	for _, filename := range files {
-		buf, err := os.Open(filename)
+		/*
+			buf, err := os.Open(filename)
+			if err != nil {
+				log.Printf("%s: ", filename)
+				log.Fatalln(err)
+			}
+			defer buf.Close()
+				reader := csvmap.NewReader(buf)
+				reader.Reader.Comma = '\t'
+				columns, err := reader.ReadHeader()
+				if err != nil {
+					log.Printf("%s: ", filename)
+					log.Fatalln(err)
+				}
+				reader.Columns = columns
+				records1, err := reader.ReadAll()
+				if err != nil {
+					log.Printf("%s: ", filename)
+					log.Fatalln(err)
+				}
+				records = append(records, records1...)
+		*/
+		buf, err := ioutil.ReadFile(filename)
 		if err != nil {
 			log.Printf("%s: ", filename)
 			log.Fatalln(err)
 		}
-		defer buf.Close()
-		reader := csvmap.NewReader(buf)
-		reader.Reader.Comma = '\t'
-		columns, err := reader.ReadHeader()
-		if err != nil {
-			log.Printf("%s: ", filename)
-			log.Fatalln(err)
-		}
-		reader.Columns = columns
-		records1, err := reader.ReadAll()
-		if err != nil {
-			log.Printf("%s: ", filename)
-			log.Fatalln(err)
-		}
+		var records1 []Curriculum
+		json.Unmarshal(buf, &records1)
 		records = append(records, records1...)
 	}
 	return records, nil
@@ -59,7 +83,7 @@ func read_curriculum(directory string) ([]map[string]string, error) {
 var classifiers map[string]ClassifierType
 
 // create a classifier specific to components of the curriculum
-func train_curriculum(curriculum []map[string]string, learning_area string, years []string) (ClassifierType, error) {
+func train_curriculum(curriculum []Curriculum, learning_area string, years []string) (ClassifierType, error) {
 	sort.Slice(years, func(i, j int) bool { return years[i] > years[j] })
 	key := learning_area + "_" + strings.Join(years, ",")
 	if classifier, ok := classifiers[key]; ok {
@@ -68,29 +92,29 @@ func train_curriculum(curriculum []map[string]string, learning_area string, year
 	classes := make([]bayesian.Class, 0)
 	class_set := set.New()
 	for _, record := range curriculum {
-		if record["LearningArea"] != learning_area {
+		if record.LearningArea != learning_area {
 			continue
 		}
-		overlap := intersect.Simple(years, strings.Split(strings.Replace(record["Year"], "\"", "", -1), ";"))
+		overlap := intersect.Simple(years, record.Year)
 		if len(overlap.([]interface{})) == 0 {
 			continue
 		}
-		classes = append(classes, bayesian.Class(record["Item"]))
-		class_set.Add(record["Item"])
+		classes = append(classes, bayesian.Class(record.Item))
+		class_set.Add(record.Item)
 	}
 	if len(classes) < 2 {
 		return ClassifierType{}, fmt.Errorf("Not enough matching curriculum statements for classification")
 	}
 	classifier := bayesian.NewClassifierTfIdf(classes...)
 	for _, record := range curriculum {
-		if !class_set.Has(record["Item"]) {
+		if !class_set.Has(record.Item) {
 			continue
 		}
-		train := record["Text"]
-		if train2, ok := record["Elaborations"]; ok {
-			train = train + ". " + train2
+		train := record.Text
+		if len(record.Elaboration) > 0 {
+			train = train + ". " + record.Elaboration
 		}
-		classifier.Learn(tokenize.TextToWords(train), bayesian.Class(record["Item"]))
+		classifier.Learn(tokenize.TextToWords(train), bayesian.Class(record.Item))
 	}
 	classifier.ConvertTermsFreqToTfIdf()
 	ret := ClassifierType{Classifier: classifier, Classes: classes}
@@ -117,7 +141,7 @@ func classify_text(classif ClassifierType, curriculum_map map[string]string, inp
 	return response
 }
 
-var curriculum []map[string]string
+var curriculum []Curriculum
 var curriculum_map map[string]string
 
 func Init() {
@@ -129,7 +153,7 @@ func Init() {
 	}
 	curriculum_map = make(map[string]string)
 	for _, record := range curriculum {
-		curriculum_map[record["Item"]] = record["Text"]
+		curriculum_map[record.Item] = record.Text
 	}
 }
 
