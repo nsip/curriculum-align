@@ -11,6 +11,6 @@ func main() {
 	align.Init()
 	e := echo.New()
 	e.GET("/align", align.Align)
-	log.Println("Editor: localhost:1756")
+	log.Println("Editor: localhost:1576")
 	e.Logger.Fatal(e.Start(":1576"))
 }

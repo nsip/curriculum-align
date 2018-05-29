@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	//"runtime/pprof"
 	"sort"
 	"strings"
 
@@ -159,5 +158,5 @@ func Align(c echo.Context) error {
 		return err
 	}
 	response := classify_text(classifier, curriculum_map, text)
-	return c.JSON(http.StatusOK, response)
+	return c.JSONPretty(http.StatusOK, response, "  ")
 }
