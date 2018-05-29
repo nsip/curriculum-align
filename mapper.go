@@ -23,10 +23,6 @@ type ClassifierType struct {
 	Classes    []bayesian.Class
 }
 
-// assumes tab-delimited file with header.
-// Expects to find fields Item (identifier), Year, LearningArea, Text, and optionally Elaborations
-// Year can contain multiple values; it is ";"-delimited
-
 type Curriculum struct {
 	Item         string
 	Year         []string
@@ -38,7 +34,6 @@ type Curriculum struct {
 	AC_Content   string `json:"AC content"`
 }
 
-// NO, is now json object
 func read_curriculum(directory string) ([]Curriculum, error) {
 	files, _ := filepath.Glob(directory + "/*.json")
 	if len(files) == 0 {
@@ -46,28 +41,6 @@ func read_curriculum(directory string) ([]Curriculum, error) {
 	}
 	records := make([]Curriculum, 0)
 	for _, filename := range files {
-		/*
-			buf, err := os.Open(filename)
-			if err != nil {
-				log.Printf("%s: ", filename)
-				log.Fatalln(err)
-			}
-			defer buf.Close()
-				reader := csvmap.NewReader(buf)
-				reader.Reader.Comma = '\t'
-				columns, err := reader.ReadHeader()
-				if err != nil {
-					log.Printf("%s: ", filename)
-					log.Fatalln(err)
-				}
-				reader.Columns = columns
-				records1, err := reader.ReadAll()
-				if err != nil {
-					log.Printf("%s: ", filename)
-					log.Fatalln(err)
-				}
-				records = append(records, records1...)
-		*/
 		buf, err := ioutil.ReadFile(filename)
 		if err != nil {
 			log.Printf("%s: ", filename)
