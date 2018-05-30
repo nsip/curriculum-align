@@ -14,7 +14,6 @@ import (
 	"github.com/jdkato/prose/tokenize"
 	"github.com/juliangruber/go-intersect"
 	"github.com/labstack/echo"
-	//"github.com/recursionpharma/go-csv-map"
 	"gopkg.in/fatih/set.v0"
 )
 
@@ -65,7 +64,7 @@ func train_curriculum(curriculum []Curriculum, learning_area string, years []str
 	classes := make([]bayesian.Class, 0)
 	class_set := set.New()
 	for _, record := range curriculum {
-		if record.LearningArea != learning_area {
+		if len(learning_area) > 0 && record.LearningArea != learning_area {
 			continue
 		}
 		overlap := intersect.Simple(years, record.Year)
@@ -136,11 +135,6 @@ func Align(c echo.Context) error {
 	text = c.QueryParam("text")
 	year = c.QueryParam("year")
 	log.Printf("Area: %s\nYears: %s\nText: %s\n", learning_area, year, text)
-	if learning_area == "" {
-		err := fmt.Errorf("area parameter not supplied")
-		c.String(http.StatusBadRequest, err.Error())
-		return err
-	}
 	if text == "" {
 		err := fmt.Errorf("text parameter not supplied")
 		c.String(http.StatusBadRequest, err.Error())

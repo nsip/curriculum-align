@@ -15,7 +15,9 @@ The web service takes the following arguments:
 ````
 GET http://localhost:1576/align?yr=X,Y,Z&area=W&text=....
 ````
-where _yr_ is the year level (and can be comma-delimited), _area_ is the learning area, and _text_ is the text to be aligned. The _area_ and _text_ parameters are obligatory. For example:
+where _yr_ is the year level (and can be comma-delimited), _area_ is the learning area, and _text_ is the text to be aligned. The _text_ parameter is obligatory. If no year is provided, all years in the curricula are matched; if no learning area is provided, all learning areas in the curricula are matched.
+
+For example:
 
 ````
 http://localhost:1576/align?area=Science&year=6,7,8&text=Biotechnology
