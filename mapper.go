@@ -54,6 +54,30 @@ func read_curriculum(directory string) ([]Curriculum, error) {
 
 var classifiers map[string]ClassifierType
 
+func normalise_tokens(tokens []string) []string {
+	ret := make([]string, 0)
+	for _, w := range tokens {
+		w = strings.TrimLeft(w, "'")
+		if len(w) < 3 {
+			continue
+		}
+		ret = append(ret, strings.ToLower(w))
+	}
+	return ret
+}
+
+func normalise_text(txt string) string {
+	return strings.Replace(
+		strings.Replace(
+			strings.Replace(txt, "\u2019", "'", -1),
+			"\u2018", "'", -1),
+		"\u2011", "-", -1)
+}
+
+func tokenise(txt string) []string {
+	return normalise_tokens(tokenize.TextToWords(normalise_text(txt)))
+}
+
 // create a classifier specific to components of the curriculum
 func train_curriculum(curriculum []Curriculum, learning_area string, years []string) (ClassifierType, error) {
 	sort.Slice(years, func(i, j int) bool { return years[i] > years[j] })
@@ -86,7 +110,13 @@ func train_curriculum(curriculum []Curriculum, learning_area string, years []str
 		if len(record.Elaboration) > 0 {
 			train = train + ". " + record.Elaboration
 		}
-		classifier.Learn(tokenize.TextToWords(train), bayesian.Class(record.Item))
+		/*
+			for _, a := range tokenise(train) {
+				fmt.Printf("%s ", a)
+			}
+			fmt.Println()
+		*/
+		classifier.Learn(tokenise(train), bayesian.Class(record.Item))
 	}
 	classifier.ConvertTermsFreqToTfIdf()
 	ret := ClassifierType{Classifier: classifier, Classes: classes}
@@ -101,7 +131,7 @@ type AlignmentType struct {
 }
 
 func classify_text(classif ClassifierType, curriculum_map map[string]string, input string) []AlignmentType {
-	scores1, _, _ := classif.Classifier.LogScores(tokenize.TextToWords(input))
+	scores1, _, _ := classif.Classifier.LogScores(tokenise(input))
 	response := make([]AlignmentType, 0)
 	for i := 0; i < len(scores1); i++ {
 		response = append(response, AlignmentType{
