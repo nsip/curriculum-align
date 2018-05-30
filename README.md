@@ -25,7 +25,7 @@ The response is a JSON list of structs with the following fields:
 * Text: the text of the curriculum item whose alignment is reported
 * Score: the score of the alignment
 
-To use embedded in other labstack.echo webservers, replicate the cmd/main.go main() code:
+To use embedded in other labstack.echo webservers, replicate the `cmd/main.go` main() code:
 
 ````
 align.Init()
@@ -33,6 +33,16 @@ e := echo.New()
 e.GET("/align", align.Align)
 ````
 
+The curricula that the web service is configured to read are JSON files in the `curricula` folder of the executable; in this distribution, sample files are in `cmd/curricula`.
+The JSON structure required is an array of JSON objects, with the following keys:
+
+* Item (string): the curriculum standard code.
+* Year ([]string): the year levels to which the curriculum standard applies. (NSW Syllabus stages are to be translated to year levels).
+* LearningArea (string): the learning area of the curriculum standard
+* Strand (string): the strand of the curriculum standard
+* Substrand (string): the substrand of the curriculum standard
+* Text (string): the text of the curriculum standard
+* Elaboration (string): the elaboration text of the curriculum standard
 
 ## 1576
 
