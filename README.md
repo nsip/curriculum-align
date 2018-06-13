@@ -8,7 +8,9 @@ document classifier (https://en.wikipedia.org/wiki/Tf–idf) to classify arbitra
 text as aligning to the curriculum items the code is provisioned with,
 and outputting the alignments as a web service.
 
-The distribution creates the web service as a library (`Align()`), and the `cmd` directory contains a sample shell for it. In the sample shell, the web service runs on port 1576.
+Binary distributions of the code are available in the build/ directory.
+
+The web service is made available as a library (`Align()`); the `cmd` directory contains a sample shell for it, which is used in the binary distribution. In the sample shell, the web service runs on port 1576.
 
 The web service takes the following arguments:
 
