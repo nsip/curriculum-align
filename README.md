@@ -10,7 +10,7 @@ and outputting the alignments as a web service.
 
 Binary distributions of the code are available in the build/ directory.
 
-The web service is made available as a library (`Align()`); the `cmd` directory contains a sample shell for it, which is used in the binary distribution. In the sample shell, the web service runs on port 1576.
+The web service is made available as a library (`Align()`); the `cmd` directory contains a sample shell for it, which is used in the binary distribution. In the sample shell, the web service runs on port 1576. The test script `test.sh` issues representative REST queries against the web service.
 
 The web service takes the following arguments:
 
