@@ -10,10 +10,12 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/jbrukh/bayesian"
+	//	"github.com/jbrukh/bayesian"
+	"github.com/bbalet/stopwords"
 	"github.com/jdkato/prose/tokenize"
 	"github.com/juliangruber/go-intersect"
 	"github.com/labstack/echo"
+	"github.com/nsip/curriculum-align/bayesian"
 	"gopkg.in/fatih/set.v0"
 )
 
@@ -55,6 +57,7 @@ func read_curriculum(directory string) ([]Curriculum, error) {
 var classifiers map[string]ClassifierType
 
 func normalise_tokens(tokens []string) []string {
+	tokens = strings.Split(stopwords.CleanString(strings.Join(tokens, " "), "en", false), " ")
 	ret := make([]string, 0)
 	for _, w := range tokens {
 		w = strings.TrimLeft(w, "'")
@@ -125,26 +128,30 @@ func train_curriculum(curriculum []Curriculum, learning_area string, years []str
 }
 
 type AlignmentType struct {
-	Item  string
-	Text  string
-	Score float64
+	Item         string
+	Text         string
+	Score        float64
+	LearningArea string
+	Matches      []bayesian.MatchStruct
 }
 
-func classify_text(classif ClassifierType, curriculum_map map[string]string, input string) []AlignmentType {
-	scores1, _, _ := classif.Classifier.LogScores(tokenise(input))
+func classify_text(classif ClassifierType, curriculum_map map[string]Curriculum, input string) []AlignmentType {
+	scores1, matches, _, _ := classif.Classifier.LogScores(tokenise(input))
 	response := make([]AlignmentType, 0)
 	for i := 0; i < len(scores1); i++ {
 		response = append(response, AlignmentType{
-			Item:  string(classif.Classes[i]),
-			Text:  curriculum_map[string(classif.Classes[i])],
-			Score: scores1[i]})
+			Item:         string(classif.Classes[i]),
+			Text:         curriculum_map[string(classif.Classes[i])].Text,
+			LearningArea: curriculum_map[string(classif.Classes[i])].LearningArea,
+			Score:        scores1[i],
+			Matches:      matches[i]})
 	}
 	sort.Slice(response, func(i, j int) bool { return response[i].Score > response[j].Score })
 	return response
 }
 
 var curriculum []Curriculum
-var curriculum_map map[string]string
+var curriculum_map map[string]Curriculum
 
 func Init() {
 	var err error
@@ -153,9 +160,9 @@ func Init() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	curriculum_map = make(map[string]string)
+	curriculum_map = make(map[string]Curriculum)
 	for _, record := range curriculum {
-		curriculum_map[record.Item] = record.Text
+		curriculum_map[record.Item] = record
 	}
 }
 
