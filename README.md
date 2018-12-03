@@ -39,7 +39,7 @@ The documents passed to the document classifier are also indexed, and can be que
 the web service `index`:
 
 ````
-http://localhost:1576/index?search=word
+GET http://localhost:1576/index?search=word
 ````
 
 To use embedded in other labstack.echo webservers, replicate the `cmd/main.go` main() code:
@@ -48,6 +48,15 @@ To use embedded in other labstack.echo webservers, replicate the `cmd/main.go` m
 align.Init()
 e := echo.New()
 e.GET("/align", align.Align)
+e.GET("/index", func(c echo.Context) error {
+                query := c.QueryParam("search")
+                ret, err := align.Search(query)
+                if err != nil {
+                        return err
+                } else {
+                        return c.String(http.StatusOK, string(ret))
+                }
+        })
 ````
 
 The curricula that the web service is configured to read are JSON files in the `curricula` folder of the executable; in this distribution, sample files are in `cmd/curricula`.
