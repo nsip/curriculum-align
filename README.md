@@ -35,6 +35,13 @@ The response is a JSON list of structs, one for each curriculum standard that th
   * Text: the matching word
   * Score: the logarithmic score
 
+The documents passed to the document classifier are also indexed, and can be queried through
+the web service `index`:
+
+````
+http://localhost:1576/index?search=word
+````
+
 To use embedded in other labstack.echo webservers, replicate the `cmd/main.go` main() code:
 
 ````

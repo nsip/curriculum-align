@@ -12,7 +12,7 @@ import (
 
 	//	"github.com/jbrukh/bayesian"
 	"github.com/bbalet/stopwords"
-	"github.com/jdkato/prose/tokenize"
+	//"github.com/jdkato/prose/tokenize"
 	"github.com/juliangruber/go-intersect"
 	"github.com/labstack/echo"
 	"github.com/nsip/curriculum-align/bayesian"
@@ -77,10 +77,6 @@ func normalise_text(txt string) string {
 		"\u2011", "-", -1)
 }
 
-func tokenise(txt string) []string {
-	return normalise_tokens(tokenize.TextToWords(normalise_text(txt)))
-}
-
 // create a classifier specific to components of the curriculum
 func train_curriculum(curriculum []Curriculum, learning_area string, years []string) (ClassifierType, error) {
 	sort.Slice(years, func(i, j int) bool { return years[i] > years[j] })
@@ -114,12 +110,12 @@ func train_curriculum(curriculum []Curriculum, learning_area string, years []str
 			train = train + ". " + record.Elaboration
 		}
 		/*
-			for _, a := range tokenise(train) {
+			for _, a := range Tokenise(train) {
 				fmt.Printf("%s ", a)
 			}
 			fmt.Println()
 		*/
-		classifier.Learn(tokenise(train), bayesian.Class(record.Item))
+		classifier.Learn(Tokenise("CURRIC"+record.Item, train, record), bayesian.Class(record.Item))
 	}
 	classifier.ConvertTermsFreqToTfIdf()
 	ret := ClassifierType{Classifier: classifier, Classes: classes}
@@ -136,7 +132,7 @@ type AlignmentType struct {
 }
 
 func classify_text(classif ClassifierType, curriculum_map map[string]Curriculum, input string) []AlignmentType {
-	scores1, matches, _, _ := classif.Classifier.LogScores(tokenise(input))
+	scores1, matches, _, _ := classif.Classifier.LogScores(Tokenise("", input, nil))
 	response := make([]AlignmentType, 0)
 	for i := 0; i < len(scores1); i++ {
 		response = append(response, AlignmentType{
@@ -155,6 +151,9 @@ var curriculum_map map[string]Curriculum
 
 func Init() {
 	var err error
+	if err = InitTokeniser(); err != nil {
+		log.Fatalln(err)
+	}
 	classifiers = make(map[string]ClassifierType)
 	curriculum, err = read_curriculum("./curricula/")
 	if err != nil {
