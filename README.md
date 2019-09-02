@@ -1,4 +1,8 @@
 # curriculum-align
+
+****DEPRECATED (RETIRED)****
+*This repository is now retired, achived and no longer maintained - note particularly that security updates are NO LONGER being performed.* 
+
 Web service to align free text to curriculum standards as document classification
 
 NOTE: This is experimental and proof-of-concept code
